@@ -1,4 +1,4 @@
-package tech.vladflore.shoppinglistbackend;
+package tech.vladflore.shoppinglist;
 
 public class Dummy {
     String dummy() {
