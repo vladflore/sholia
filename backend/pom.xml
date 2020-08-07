@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tech.vladflore</groupId>
-    <artifactId>shopping-list-backend</artifactId>
+    <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>shopping-list-backend</name>
+    <name>backend</name>
     <description>shopping list backend powered by spring boot</description>
 
     <properties>
