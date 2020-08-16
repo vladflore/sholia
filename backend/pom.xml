@@ -30,47 +30,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.plugin</groupId>
-                    <artifactId>spring-plugin-core</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <groupId>tech.vladflore</groupId>
-            <artifactId>specification</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.plugin</groupId>-->
-<!--                    <artifactId>spring-plugin</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.plugin</groupId>-->
-<!--                    <artifactId>spring-plugin-metadata</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.plugin</groupId>-->
-<!--                    <artifactId>spring-plugin-core</artifactId>-->
-<!--                </exclusion>-->
-            </exclusions>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.plugin</groupId>-->
-<!--            <artifactId>spring-plugin-metadata</artifactId>-->
-<!--            <version>2.0.0.RELEASE</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.plugin</groupId>-->
-<!--            <artifactId>spring-plugin-core</artifactId>-->
-<!--            <version>2.0.0.RELEASE</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.plugin</groupId>-->
-<!--            <artifactId>spring-plugin</artifactId>-->
-<!--            <version>2.0.0.RELEASE</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

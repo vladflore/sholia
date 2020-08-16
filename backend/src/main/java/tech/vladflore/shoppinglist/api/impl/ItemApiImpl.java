@@ -1,4 +1,4 @@
-package tech.vladflore.shoppinglist;
+package tech.vladflore.shoppinglist.api.impl;
 
 import org.springframework.http.ResponseEntity;
 import tech.vladflore.shoppinglist.api.ItemApi;
