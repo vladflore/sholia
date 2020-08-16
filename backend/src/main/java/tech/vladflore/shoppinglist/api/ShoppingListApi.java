@@ -1,5 +1,6 @@
 package tech.vladflore.shoppinglist.api;
 
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -42,9 +43,8 @@ public interface ShoppingListApi {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.POST)
-    default ResponseEntity<Object> createShoppingList(@Valid @RequestBody ShoppingList shoppingList) {
+    default ResponseEntity<EntityModel<ShoppingList>> createShoppingList(@Valid @RequestBody ShoppingList shoppingList) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
     }
 
     /**

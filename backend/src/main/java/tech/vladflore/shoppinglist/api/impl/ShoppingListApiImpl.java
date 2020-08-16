@@ -28,7 +28,7 @@ public class ShoppingListApiImpl implements ShoppingListApi {
     }
 
     @Override
-    public ResponseEntity<Object> createShoppingList(@Valid ShoppingList shoppingList) {
+    public ResponseEntity<EntityModel<ShoppingList>> createShoppingList(@Valid ShoppingList shoppingList) {
         // TODO persist the shopping list
         ShoppingList newShoppingList = new ShoppingList().id(new Random().nextLong()).name(shoppingList.getName());
         EntityModel<ShoppingList> model = assembler.toModel(newShoppingList);
