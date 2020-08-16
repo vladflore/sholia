@@ -7,21 +7,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.NativeWebRequest;
 import tech.vladflore.shoppinglist.model.Item;
 import tech.vladflore.shoppinglist.model.ShoppingList;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 
 @Validated
 public interface ShoppingListApi {
-
-    default Optional<NativeWebRequest> getRequest() {
-        return Optional.empty();
-    }
 
     /**
      * GET /shopping-lists : Get all the shopping lists
