@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,10 @@ public class ItemRepository {
 
     public List<Item> findAll() {
         return unmodifiableList(items);
+    }
+
+    public Optional<Item> findById(Long id) {
+        return items.stream().filter(item -> item.getId().equals(id)).findFirst();
     }
 
     public List<Item> findAllByName(String name) {

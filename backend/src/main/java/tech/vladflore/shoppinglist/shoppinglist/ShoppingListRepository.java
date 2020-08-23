@@ -6,6 +6,7 @@ import tech.vladflore.shoppinglist.item.ItemRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -53,5 +54,9 @@ public class ShoppingListRepository {
                 .findFirst()
                 .map(ShoppingList::getItems)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("Shopping list with id %d does not exist!", shoppingListId)));
+    }
+
+    public Optional<ShoppingList> findById(Long id) {
+        return shoppingLists.stream().filter(sl -> sl.getId().equals(id)).findFirst();
     }
 }

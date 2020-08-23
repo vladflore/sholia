@@ -3,6 +3,7 @@ package tech.vladflore.shoppinglist.shoppinglist;
 import tech.vladflore.shoppinglist.item.Item;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,18 +42,24 @@ public class ShoppingList {
         return this;
     }
 
+    public void addItem(Item item) {
+        if (items == null) {
+            items = new ArrayList<>();
+        }
+        items.add(item);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingList that = (ShoppingList) o;
-        return id.equals(that.id) &&
-                name.equals(that.name);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 
     @Override

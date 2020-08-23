@@ -65,16 +65,12 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id.equals(item.id) &&
-                name.equals(item.name) &&
-                quantity.equals(item.quantity) &&
-                measurement == item.measurement &&
-                language == item.language;
+        return id.equals(item.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, quantity, measurement, language);
+        return Objects.hash(id);
     }
 
     @Override
