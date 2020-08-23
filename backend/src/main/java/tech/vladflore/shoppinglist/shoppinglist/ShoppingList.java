@@ -1,9 +1,11 @@
 package tech.vladflore.shoppinglist.shoppinglist;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 public class ShoppingList {
     private Long id;
+    @NotEmpty
     private String name;
 
     public Long getId() {

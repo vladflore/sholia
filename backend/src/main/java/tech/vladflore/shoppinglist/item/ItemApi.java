@@ -16,7 +16,7 @@ public class ItemApi {
         this.itemRepository = itemRepository;
     }
 
-    @GetMapping("/items")
+    @GetMapping("/shopping/items")
     ResponseEntity<List<Item>> getItems(@RequestParam(required = false, name = "name") String itemName) {
         if (StringUtils.isEmpty(itemName)) {
             return ResponseEntity.ok(itemRepository.findAll());
@@ -24,7 +24,7 @@ public class ItemApi {
         return ResponseEntity.ok(itemRepository.findAllByName(itemName));
     }
 
-    @PostMapping("/items")
+    @PostMapping("/shopping/items")
     ResponseEntity<Item> createItem(@Valid @RequestBody Item item) {
         return ResponseEntity.ok(itemRepository.save(item));
     }
