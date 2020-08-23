@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static java.util.Collections.unmodifiableList;
 
 @Component
-class ItemRepository {
+public class ItemRepository {
     private final List<Item> items;
     private final Random random = new Random();
 
