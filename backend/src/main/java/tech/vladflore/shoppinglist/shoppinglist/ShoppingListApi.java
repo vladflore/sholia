@@ -1,4 +1,4 @@
-package tech.vladflore.shoppinglist.api;
+package tech.vladflore.shoppinglist.shoppinglist;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import tech.vladflore.shoppinglist.model.Item;
-import tech.vladflore.shoppinglist.model.ShoppingList;
+import tech.vladflore.shoppinglist.item.Item;
 
 import javax.validation.Valid;
 import java.util.List;
