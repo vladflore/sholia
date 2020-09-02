@@ -1,4 +1,4 @@
-package tech.vladflore.shoppinglist.item;
+package tech.vladflore.sholia.item;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/items")
 public class ItemApi {
 
     private final ItemRepository itemRepository;
@@ -16,7 +17,7 @@ public class ItemApi {
         this.itemRepository = itemRepository;
     }
 
-    @GetMapping("/shopping/items")
+    @GetMapping
     ResponseEntity<List<Item>> getItems(@RequestParam(required = false, name = "name") String itemName) {
         if (StringUtils.isEmpty(itemName)) {
             return ResponseEntity.ok(itemRepository.findAll());
@@ -24,7 +25,7 @@ public class ItemApi {
         return ResponseEntity.ok(itemRepository.findAllByName(itemName));
     }
 
-    @PostMapping("/shopping/items")
+    @PostMapping
     ResponseEntity<Item> createItem(@Valid @RequestBody Item item) {
         return ResponseEntity.ok(itemRepository.save(item));
     }

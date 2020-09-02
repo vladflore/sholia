@@ -1,4 +1,4 @@
-package tech.vladflore.shoppinglist.item;
+package tech.vladflore.sholia.item;
 
 import org.springframework.stereotype.Component;
 

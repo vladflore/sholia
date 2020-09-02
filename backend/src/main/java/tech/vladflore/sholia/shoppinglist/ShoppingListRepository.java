@@ -1,8 +1,8 @@
-package tech.vladflore.shoppinglist.shoppinglist;
+package tech.vladflore.sholia.shoppinglist;
 
 import org.springframework.stereotype.Component;
-import tech.vladflore.shoppinglist.item.Item;
-import tech.vladflore.shoppinglist.item.ItemRepository;
+import tech.vladflore.sholia.item.Item;
+import tech.vladflore.sholia.item.ItemRepository;
 
 import java.util.ArrayList;
 import java.util.List;

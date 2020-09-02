@@ -1,6 +1,7 @@
-package tech.vladflore.shoppinglist.shoppinglist;
+package tech.vladflore.sholia.shoppinglist;
 
-import tech.vladflore.shoppinglist.item.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import tech.vladflore.sholia.item.Item;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class ShoppingList {
     private Long id;
     @NotEmpty
     private String name;
+
+    @JsonIgnore
     private List<Item> items;
 
     public Long getId() {

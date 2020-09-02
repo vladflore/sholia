@@ -8,10 +8,10 @@
         <version>2.3.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>tech.vladflore</groupId>
+    <groupId>tech.vladflore.sholia</groupId>
     <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>backend</name>
+    <name>${artifactId}</name>
     <description>shopping list backend powered by spring boot</description>
 
     <properties>

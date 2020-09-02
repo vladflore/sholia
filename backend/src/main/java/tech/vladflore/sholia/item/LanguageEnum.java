@@ -1,20 +1,18 @@
-package tech.vladflore.shoppinglist.item;
+package tech.vladflore.sholia.item;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum MeasurementEnum {
-    G("g"),
+public enum LanguageEnum {
+    EN("en"),
 
-    KG("kg"),
+    DE("de"),
 
-    L("l"),
-
-    PC("pc");
+    RO("ro");
 
     private String value;
 
-    MeasurementEnum(String value) {
+    LanguageEnum(String value) {
         this.value = value;
     }
 
@@ -29,8 +27,8 @@ public enum MeasurementEnum {
     }
 
     @JsonCreator
-    public static MeasurementEnum fromValue(String value) {
-        for (MeasurementEnum b : MeasurementEnum.values()) {
+    public static LanguageEnum fromValue(String value) {
+        for (LanguageEnum b : LanguageEnum.values()) {
             if (b.value.equals(value)) {
                 return b;
             }
