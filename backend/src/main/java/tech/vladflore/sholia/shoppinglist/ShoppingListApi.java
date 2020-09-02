@@ -10,6 +10,7 @@ import tech.vladflore.sholia.item.ItemRepository;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/lists")
@@ -37,21 +38,24 @@ public class ShoppingListApi {
     }
 
     @GetMapping("/{id}/items")
-    ResponseEntity<List<Item>> getItemsForShoppingList(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(shoppingListRepository.getItemsForShoppingList(id));
+    ResponseEntity<Set<Item>> getItemsForShoppingList(@PathVariable("id") Long id) {
+        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(id);
+        return shoppingList.map(list -> ResponseEntity.ok(list.getItems())).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{listId}/items/{itemId}")
-    ResponseEntity<?> addItemOnShoppingList(@PathVariable Long listId, @PathVariable Long itemId) {
-        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(listId);
-        if (!shoppingList.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    ResponseEntity<?> addItemOnShoppingList(@PathVariable Long itemId, @PathVariable Long listId) {
         Optional<Item> item = itemRepository.findById(itemId);
         if (!item.isPresent()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        shoppingList.get().addItem(item.get());
+        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(listId);
+        if (!shoppingList.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        shoppingList.get().getItems().add(item.get());
+        shoppingListRepository.save(shoppingList.get());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

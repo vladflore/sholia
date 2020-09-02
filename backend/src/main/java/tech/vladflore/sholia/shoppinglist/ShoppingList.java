@@ -3,20 +3,30 @@ package tech.vladflore.sholia.shoppinglist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import tech.vladflore.sholia.item.Item;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-import static java.util.Collections.unmodifiableList;
-
+@Entity
+@Table(name = "shoppinglist")
 public class ShoppingList {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotEmpty
     private String name;
 
     @JsonIgnore
-    private List<Item> items;
+    @ManyToMany
+    @JoinTable(
+            name = "shoppinglist_item",
+            joinColumns = @JoinColumn(name = "shoppinglist_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    private final Set<Item> items = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -36,20 +46,8 @@ public class ShoppingList {
         return this;
     }
 
-    public List<Item> getItems() {
-        return unmodifiableList(items);
-    }
-
-    public ShoppingList items(List<Item> items) {
-        this.items = items;
-        return this;
-    }
-
-    public void addItem(Item item) {
-        if (items == null) {
-            items = new ArrayList<>();
-        }
-        items.add(item);
+    public Set<Item> getItems() {
+        return items;
     }
 
     @Override

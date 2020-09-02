@@ -1,19 +1,36 @@
 package tech.vladflore.sholia.item;
 
+import tech.vladflore.sholia.shoppinglist.ShoppingList;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+@Entity
 public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotEmpty
     private String name;
+
     @NotNull
     private Long quantity;
+
     @NotNull
+    @Enumerated(EnumType.STRING)
     private MeasurementEnum measurement;
+
     @NotNull
+    @Enumerated(EnumType.STRING)
     private LanguageEnum language;
+
+    @ManyToMany(mappedBy = "items")
+    private final Set<ShoppingList> shoppingLists = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -57,6 +74,15 @@ public class Item {
 
     public Item language(LanguageEnum language) {
         this.language = language;
+        return this;
+    }
+
+    public Set<ShoppingList> getShoppingLists() {
+        return shoppingLists;
+    }
+
+    public Item shoppingList(ShoppingList shoppingList) {
+        this.shoppingLists.add(shoppingList);
         return this;
     }
 
