@@ -1,5 +1,6 @@
 package tech.vladflore.sholia.item;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import tech.vladflore.sholia.shoppinglist.ShoppingList;
 
 import javax.persistence.*;
@@ -31,6 +32,9 @@ public class Item {
 
     @ManyToMany(mappedBy = "items")
     private final Set<ShoppingList> shoppingLists = new HashSet<>();
+
+    @JsonProperty("unit_price")
+    private Double unitPrice;
 
     public Long getId() {
         return id;
@@ -108,5 +112,13 @@ public class Item {
                 ", measurement=" + measurement +
                 ", language=" + language +
                 '}';
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

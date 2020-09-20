@@ -46,11 +46,11 @@ public class ShoppingListApi {
     @PutMapping("/{listId}/items/{itemId}")
     ResponseEntity<?> addItemOnShoppingList(@PathVariable Long itemId, @PathVariable Long listId) {
         Optional<Item> item = itemRepository.findById(itemId);
-        if (!item.isPresent()) {
+        if (item.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(listId);
-        if (!shoppingList.isPresent()) {
+        if (shoppingList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 

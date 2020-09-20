@@ -12,7 +12,7 @@ public enum MeasurementEnum {
 
     PC("pc");
 
-    private String value;
+    private final String value;
 
     MeasurementEnum(String value) {
         this.value = value;

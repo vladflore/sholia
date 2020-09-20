@@ -10,7 +10,7 @@ public enum LanguageEnum {
 
     RO("ro");
 
-    private String value;
+    private final String value;
 
     LanguageEnum(String value) {
         this.value = value;
