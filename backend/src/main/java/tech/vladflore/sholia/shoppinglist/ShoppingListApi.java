@@ -5,12 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import tech.vladflore.sholia.item.Item;
+import tech.vladflore.sholia.item.ItemDto;
+import tech.vladflore.sholia.item.ItemMapper;
 import tech.vladflore.sholia.item.ItemRepository;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/lists")
@@ -25,22 +27,33 @@ public class ShoppingListApi {
     }
 
     @GetMapping
-    ResponseEntity<List<ShoppingList>> getShoppingLists(@RequestParam(required = false, name = "name") String shoppingListName) {
+    ResponseEntity<List<ShoppingListDto>> getShoppingLists(@RequestParam(required = false, name = "name") String shoppingListName) {
         if (StringUtils.isEmpty(shoppingListName)) {
-            return ResponseEntity.ok(shoppingListRepository.findAll());
+            List<ShoppingList> shoppingLists = shoppingListRepository.findAll();
+            return ResponseEntity.ok(ShoppingListMapper.MAPPER.toDtos(shoppingLists));
         }
-        return ResponseEntity.ok(shoppingListRepository.findAllByName(shoppingListName));
+        List<ShoppingList> shoppingLists = shoppingListRepository.findByNameContainingIgnoreCase(shoppingListName);
+        return ResponseEntity.ok(ShoppingListMapper.MAPPER.toDtos(shoppingLists));
     }
 
     @PostMapping
-    ResponseEntity<ShoppingList> createShoppingList(@Valid @RequestBody ShoppingList shoppingList) {
-        return ResponseEntity.ok(shoppingListRepository.save(shoppingList));
+    ResponseEntity<ShoppingListDto> createShoppingList(@Valid @RequestBody ShoppingListDto shoppingListDto) {
+        ShoppingList shoppingList = ShoppingListMapper.MAPPER.toEntity(shoppingListDto);
+        ShoppingList savedShoppingList = shoppingListRepository.save(shoppingList);
+        return ResponseEntity.ok(ShoppingListMapper.MAPPER.toDto(savedShoppingList));
     }
 
     @GetMapping("/{id}/items")
-    ResponseEntity<Set<Item>> getItemsForShoppingList(@PathVariable("id") Long id) {
+    ResponseEntity<List<ItemDto>> getItemsForShoppingList(@PathVariable("id") Long id) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(id);
-        return shoppingList.map(list -> ResponseEntity.ok(list.getItems())).orElseGet(() -> ResponseEntity.notFound().build());
+        if (shoppingList.isPresent()) {
+            List<Item> items = shoppingList.get().getItems();
+            if (items.isEmpty()) {
+                return ResponseEntity.ok(Collections.emptyList());
+            }
+            return ResponseEntity.ok(ItemMapper.MAPPER.toDtos(items));
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{listId}/items/{itemId}")

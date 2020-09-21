@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import tech.vladflore.sholia.item.Item;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "shoppinglist")
@@ -16,7 +15,6 @@ public class ShoppingList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
     private String name;
 
     @JsonIgnore
@@ -26,7 +24,7 @@ public class ShoppingList {
             joinColumns = @JoinColumn(name = "shoppinglist_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
-    private final Set<Item> items = new HashSet<>();
+    private final List<Item> items = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -46,7 +44,7 @@ public class ShoppingList {
         return this;
     }
 
-    public Set<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 

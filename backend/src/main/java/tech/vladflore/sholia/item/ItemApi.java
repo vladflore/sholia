@@ -1,7 +1,6 @@
 package tech.vladflore.sholia.item;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,15 +17,20 @@ public class ItemApi {
     }
 
     @GetMapping
-    ResponseEntity<List<Item>> getItems(@RequestParam(required = false, name = "name") String itemName) {
-        if (StringUtils.isEmpty(itemName)) {
-            return ResponseEntity.ok(itemRepository.findAll());
+    ResponseEntity<List<ItemDto>> getItems(@RequestParam(required = false, name = "name") String itemName) {
+        if (itemName.isBlank()) {
+            List<Item> items = itemRepository.findAll();
+            return ResponseEntity.ok(ItemMapper.MAPPER.toDtos(items));
         }
-        return ResponseEntity.ok(itemRepository.findAllByName(itemName));
+
+        List<Item> items = itemRepository.findByNameContainingIgnoreCase(itemName);
+        return ResponseEntity.ok(ItemMapper.MAPPER.toDtos(items));
     }
 
     @PostMapping
-    ResponseEntity<Item> createItem(@Valid @RequestBody Item item) {
-        return ResponseEntity.ok(itemRepository.save(item));
+    ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto itemDto) {
+        Item item = ItemMapper.MAPPER.toEntity(itemDto);
+        Item savedItem = itemRepository.save(item);
+        return ResponseEntity.ok(ItemMapper.MAPPER.toDto(savedItem));
     }
 }

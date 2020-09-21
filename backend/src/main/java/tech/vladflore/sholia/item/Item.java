@@ -1,11 +1,8 @@
 package tech.vladflore.sholia.item;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import tech.vladflore.sholia.shoppinglist.ShoppingList;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,31 +13,26 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
     private String name;
 
-    @NotNull
     private Long quantity;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private MeasurementEnum measurement;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private LanguageEnum language;
 
     @ManyToMany(mappedBy = "items")
     private final Set<ShoppingList> shoppingLists = new HashSet<>();
 
-    @JsonProperty("unit_price")
     private Double unitPrice;
 
     public Long getId() {
         return id;
     }
 
-    public Item id(Long id) {
+    public Item setId(Long id) {
         this.id = id;
         return this;
     }
@@ -49,7 +41,7 @@ public class Item {
         return name;
     }
 
-    public Item name(String name) {
+    public Item setName(String name) {
         this.name = name;
         return this;
     }
@@ -58,7 +50,7 @@ public class Item {
         return quantity;
     }
 
-    public Item quantity(Long quantity) {
+    public Item setQuantity(Long quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -67,7 +59,7 @@ public class Item {
         return measurement;
     }
 
-    public Item measurement(MeasurementEnum measurement) {
+    public Item setMeasurement(MeasurementEnum measurement) {
         this.measurement = measurement;
         return this;
     }
@@ -76,7 +68,7 @@ public class Item {
         return language;
     }
 
-    public Item language(LanguageEnum language) {
+    public Item setLanguage(LanguageEnum language) {
         this.language = language;
         return this;
     }
@@ -85,8 +77,12 @@ public class Item {
         return shoppingLists;
     }
 
-    public Item shoppingList(ShoppingList shoppingList) {
-        this.shoppingLists.add(shoppingList);
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public Item setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
         return this;
     }
 
@@ -112,13 +108,5 @@ public class Item {
                 ", measurement=" + measurement +
                 ", language=" + language +
                 '}';
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
     }
 }
