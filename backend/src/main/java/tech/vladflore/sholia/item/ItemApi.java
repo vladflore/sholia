@@ -31,6 +31,7 @@ public class ItemApi {
     ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto itemDto) {
         Item item = ItemMapper.MAPPER.toEntity(itemDto);
         Item savedItem = itemRepository.save(item);
+        //TODO this should probably return a created status with Location header
         return ResponseEntity.ok(ItemMapper.MAPPER.toDto(savedItem));
     }
 }
