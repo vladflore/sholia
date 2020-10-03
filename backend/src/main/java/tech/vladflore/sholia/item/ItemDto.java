@@ -27,6 +27,14 @@ public class ItemDto {
     @JsonProperty("shopping_lists")
     private Set<ShoppingListDto> shoppingLists;
 
-    @JsonProperty("unit_price")
-    private Double unitPrice;
+    @JsonProperty("price_per_quantity")
+    private Double pricePerQuantity;
+
+    @NotEmpty
+    private String shop;
+
+    private String notes;
+
+    @NotNull
+    private CurrencyEnum currency;
 }

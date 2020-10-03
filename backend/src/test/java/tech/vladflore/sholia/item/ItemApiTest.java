@@ -70,7 +70,10 @@ class ItemApiTest {
                 "  \"quantity\": 1,\n" +
                 "  \"measurement\": \"kg\",\n" +
                 "  \"language\": \"en\",\n" +
-                "  \"unit_price\": 1.99\n" +
+                "  \"price_per_quantity\": 1.99,\n" +
+                "  \"shop\": \"shop\",\n" +
+                "  \"notes\": \"notes\",\n" +
+                "  \"currency\": \"euro\"\n" +
                 "}\n";
 
         Item savedItem = new Item();

@@ -21,9 +21,12 @@ class ItemMapperTest {
         assertThat(item.getId()).isEqualTo(itemDto.getId());
         assertThat(item.getName()).isEqualTo(itemDto.getName());
         assertThat(item.getQuantity()).isEqualTo(itemDto.getQuantity());
-        assertThat(item.getUnitPrice()).isEqualTo(itemDto.getUnitPrice());
+        assertThat(item.getPricePerQuantity()).isEqualTo(itemDto.getPricePerQuantity());
         assertThat(item.getMeasurement()).isEqualByComparingTo(itemDto.getMeasurement());
         assertThat(item.getLanguage()).isEqualByComparingTo(itemDto.getLanguage());
+        assertThat(item.getCurrency()).isEqualByComparingTo(itemDto.getCurrency());
+        assertThat(item.getShop()).isEqualTo(itemDto.getShop());
+        assertThat(item.getNotes()).isEqualTo(itemDto.getNotes());
     }
 
     @Test
@@ -35,9 +38,12 @@ class ItemMapperTest {
         assertThat(itemDto.getId()).isEqualTo(item.getId());
         assertThat(itemDto.getName()).isEqualTo(item.getName());
         assertThat(itemDto.getQuantity()).isEqualTo(item.getQuantity());
-        assertThat(itemDto.getUnitPrice()).isEqualTo(item.getUnitPrice());
+        assertThat(itemDto.getPricePerQuantity()).isEqualTo(item.getPricePerQuantity());
         assertThat(itemDto.getMeasurement()).isEqualByComparingTo(item.getMeasurement());
         assertThat(itemDto.getLanguage()).isEqualByComparingTo(item.getLanguage());
+        assertThat(itemDto.getCurrency()).isEqualByComparingTo(item.getCurrency());
+        assertThat(itemDto.getShop()).isEqualTo(item.getShop());
+        assertThat(itemDto.getNotes()).isEqualTo(item.getNotes());
     }
 
     @Test
@@ -68,9 +74,12 @@ class ItemMapperTest {
         itemDto.setId(1L);
         itemDto.setName("item");
         itemDto.setQuantity(1L);
-        itemDto.setUnitPrice(1.0);
+        itemDto.setPricePerQuantity(1.0);
         itemDto.setMeasurement(MeasurementEnum.PC);
         itemDto.setLanguage(LanguageEnum.EN);
+        itemDto.setShop("shop");
+        itemDto.setNotes("only the best");
+        itemDto.setCurrency(CurrencyEnum.EURO);
         return itemDto;
     }
 
@@ -79,9 +88,13 @@ class ItemMapperTest {
         item.setId(1L);
         item.setName("item");
         item.setQuantity(1L);
-        item.setUnitPrice(1.0);
+        item.setPricePerQuantity(1.0);
         item.setMeasurement(MeasurementEnum.PC);
         item.setLanguage(LanguageEnum.EN);
+        item.setShop("shop");
+        item.setNotes("only the best");
+        item.setCurrency(CurrencyEnum.EURO);
+
         return item;
     }
 }

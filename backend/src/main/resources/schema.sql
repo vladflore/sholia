@@ -12,7 +12,11 @@ create table item
     quantity    bigint       not null,
     measurement varchar(10)  not null,
     language    varchar(10)  not null,
-    unit_price   double not null
+    price_per_quantity   double not null,
+    shop varchar(50) not null,
+    notes varchar(100),
+    currency varchar(10) not null
+
 );
 
 

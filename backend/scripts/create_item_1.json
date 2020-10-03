@@ -3,5 +3,8 @@
   "quantity": 1,
   "measurement": "kg",
   "language": "en",
-  "unit_price": 1.99
+  "price_per_quantity": 1.99,
+  "shop": "shop1",
+  "notes": "notes1",
+  "currency": "euro"
 }

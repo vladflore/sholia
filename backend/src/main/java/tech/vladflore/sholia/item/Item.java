@@ -27,5 +27,12 @@ public class Item {
     @ManyToMany(mappedBy = "items")
     private final Set<ShoppingList> shoppingLists = new HashSet<>();
 
-    private Double unitPrice;
+    private Double pricePerQuantity;
+
+    private String shop;
+
+    private String notes;
+
+    @Enumerated(EnumType.STRING)
+    private CurrencyEnum currency;
 }

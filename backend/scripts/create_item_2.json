@@ -3,5 +3,8 @@
   "quantity": 1,
   "measurement": "kg",
   "language": "de",
-  "unit_price": 2
+  "price_per_quantity": 2,
+  "shop": "shop2",
+  "notes": "notes2",
+  "currency": "dollar"
 }
