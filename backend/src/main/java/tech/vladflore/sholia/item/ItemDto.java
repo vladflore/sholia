@@ -16,7 +16,7 @@ public class ItemDto {
     private String name;
 
     @NotNull
-    private Long quantity;
+    private Double quantity;
 
     @NotNull
     private MeasurementEnum measurement;

@@ -73,7 +73,7 @@ class ItemMapperTest {
         ItemDto itemDto = new ItemDto();
         itemDto.setId(1L);
         itemDto.setName("item");
-        itemDto.setQuantity(1L);
+        itemDto.setQuantity(1.0);
         itemDto.setPricePerQuantity(1.0);
         itemDto.setMeasurement(MeasurementEnum.PC);
         itemDto.setLanguage(LanguageEnum.EN);
@@ -87,7 +87,7 @@ class ItemMapperTest {
         Item item = new Item();
         item.setId(1L);
         item.setName("item");
-        item.setQuantity(1L);
+        item.setQuantity(1.0);
         item.setPricePerQuantity(1.0);
         item.setMeasurement(MeasurementEnum.PC);
         item.setLanguage(LanguageEnum.EN);

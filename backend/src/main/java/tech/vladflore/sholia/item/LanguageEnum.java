@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum LanguageEnum {
     EN("en"),
-
     DE("de"),
-
     RO("ro");
 
     private final String value;

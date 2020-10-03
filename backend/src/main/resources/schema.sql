@@ -9,7 +9,7 @@ create table item
 (
     id          bigint       not null,
     name        varchar(100) not null,
-    quantity    bigint       not null,
+    quantity    double       not null,
     measurement varchar(10)  not null,
     language    varchar(10)  not null,
     price_per_quantity   double not null,

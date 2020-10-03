@@ -16,7 +16,7 @@ public class Item {
 
     private String name;
 
-    private Long quantity;
+    private Double quantity;
 
     @Enumerated(EnumType.STRING)
     private MeasurementEnum measurement;
