@@ -1,0 +1,42 @@
+@startuml
+
+title Domain Objects\nSholia Project\n
+
+class Item {
+- id: Long
+- name: String
+- quantity: Double
+- measurement: MeasurementEnum
+- language: LanguageEnum
+- pricePerQuantity: Double
+- shop: String
+- notes: String
+- currency: CurrencyEnum
+}
+
+class ShoppingList{
+- id: Long
+- name: String
+- items: List<Item>
+}
+
+enum MeasurementEnum {
+G
+KG
+L
+PC
+}
+
+enum LanguageEnum{
+EN
+DE
+RO
+}
+
+enum CurrencyEnum{
+EURO
+DOLLAR
+RON
+}
+
+@enduml
