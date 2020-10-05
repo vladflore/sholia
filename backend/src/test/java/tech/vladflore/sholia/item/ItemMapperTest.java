@@ -3,6 +3,7 @@ package tech.vladflore.sholia.item;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -67,6 +68,16 @@ class ItemMapperTest {
         assertThat(itemDtos.size()).isEqualTo(1);
         assertThat(itemDtos.get(0).getName()).isEqualTo(items.get(0).getName());
 
+    }
+
+    @Test
+    @DisplayName("should map an empty list of item entities to an empty list of item dtos")
+    void toEmptyDtos() {
+        List<Item> items = Collections.emptyList();
+        List<ItemDto> itemDtos = ItemMapper.MAPPER.toDtos(items);
+
+        assertThat(itemDtos).isNotNull();
+        assertThat(itemDtos.size()).isEqualTo(0);
     }
 
     private ItemDto createItemDto() {

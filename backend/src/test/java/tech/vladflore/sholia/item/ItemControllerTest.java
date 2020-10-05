@@ -2,6 +2,9 @@ package tech.vladflore.sholia.item;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,56 +13,49 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(ItemApi.class)
-class ItemApiTest {
+@WebMvcTest(controllers = ItemController.class)
+class ItemControllerTest {
 
     @MockBean
-    private ItemRepository itemRepository;
+    private ItemService itemService;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Captor
-    private ArgumentCaptor<Item> argumentCaptor;
+    private ArgumentCaptor<ItemDto> itemDtoArgumentCaptor;
 
-    @Test
-    @DisplayName("fetch all items when no name parameter is given")
-    void fetchAllItems() throws Exception {
-        Item item1 = new Item();
-        item1.setName("apples");
+    @Captor
+    private ArgumentCaptor<String> stringArgumentCaptor;
 
-        Item item2 = new Item();
-        item2.setName("bananas");
-        when(itemRepository.findAll()).thenReturn(List.of(item1, item2));
-
-        mockMvc.perform(get("/api/v1/items?name="))
+    @ParameterizedTest
+    @DisplayName("should fetch items when name parameter has following values:")
+    @EmptySource
+    @ValueSource(strings = {"item name"})
+    void fetchAllItems(String name) throws Exception {
+        mockMvc.perform(get("/api/v1/items?name=" + name))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.size()", is(2)));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        verify(itemService, times(1)).findItems(stringArgumentCaptor.capture());
+        assertThat(stringArgumentCaptor.getValue()).isEqualTo(name);
     }
 
     @Test
-    @DisplayName("fetch only items that contain the given name parameter")
-    void fetchSpecificItems() throws Exception {
-        Item item = new Item();
-        item.setName("bananas");
-        when(itemRepository.findByNameContainingIgnoreCase("bananas")).thenReturn(List.of(item));
-
-        mockMvc.perform(get("/api/v1/items?name=bananas"))
+    @DisplayName("should fetch items when name parameter is missing")
+    void fetchAllItems() throws Exception {
+        mockMvc.perform(get("/api/v1/items"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.size()", is(1)));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        verify(itemService, times(1)).findItems(stringArgumentCaptor.capture());
+        assertThat(stringArgumentCaptor.getValue()).isNull();
     }
 
     @Test
@@ -76,10 +72,10 @@ class ItemApiTest {
                 "  \"currency\": \"euro\"\n" +
                 "}\n";
 
-        Item savedItem = new Item();
+        ItemDto savedItem = new ItemDto();
         savedItem.setId(1L);
         savedItem.setName("apples");
-        when(itemRepository.save(any(Item.class))).thenReturn(savedItem);
+        when(itemService.save(any(ItemDto.class))).thenReturn(savedItem);
 
         mockMvc.perform(post("/api/v1/items")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -88,10 +84,7 @@ class ItemApiTest {
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is("apples")));
 
-        verify(itemRepository).save(argumentCaptor.capture());
-        Item saveArgument = argumentCaptor.getValue();
-
-        assertThat(saveArgument.getName()).isEqualTo("apples");
-        assertThat(saveArgument.getId()).isNull();
+        verify(itemService, times(1)).save(itemDtoArgumentCaptor.capture());
+        assertThat(itemDtoArgumentCaptor.getValue().getName()).isEqualTo(savedItem.getName());
     }
 }
