@@ -1,14 +1,11 @@
 package tech.vladflore.sholia.item;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ItemMapper {
-
-    ItemMapper MAPPER = Mappers.getMapper(ItemMapper.class);
 
     Item toEntity(ItemDto itemDto);
 

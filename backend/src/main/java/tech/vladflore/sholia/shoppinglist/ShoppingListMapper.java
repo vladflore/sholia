@@ -1,14 +1,11 @@
 package tech.vladflore.sholia.shoppinglist;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ShoppingListMapper {
-
-    ShoppingListMapper MAPPER = Mappers.getMapper(ShoppingListMapper.class);
 
     ShoppingList toEntity(ShoppingListDto shoppingListDto);
 

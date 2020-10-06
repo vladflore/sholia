@@ -17,12 +17,12 @@ public class ItemController {
     }
 
     @GetMapping
-    ResponseEntity<List<ItemDto>> getItems(@RequestParam(required = false, name = "name") String itemName) {
+    public ResponseEntity<List<ItemDto>> getItems(@RequestParam(required = false, name = "name") String itemName) {
         return ResponseEntity.ok(itemService.findItems(itemName));
     }
 
     @PostMapping
-    ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto item) {
+    public ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto item) {
         return ResponseEntity.ok(itemService.save(item));
     }
 }

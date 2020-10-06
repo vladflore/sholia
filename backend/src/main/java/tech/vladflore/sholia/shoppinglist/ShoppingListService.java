@@ -11,20 +11,22 @@ import java.util.Optional;
 public class ShoppingListService {
 
     private final ShoppingListRepository shoppingListRepository;
+    private final ShoppingListMapper shoppingListMapper;
 
-    public ShoppingListService(ShoppingListRepository shoppingListRepository) {
+    public ShoppingListService(ShoppingListRepository shoppingListRepository, ShoppingListMapper shoppingListMapper) {
         this.shoppingListRepository = shoppingListRepository;
+        this.shoppingListMapper = shoppingListMapper;
     }
 
     public List<ShoppingListDto> findShoppingLists(String shoppingListName) {
         if (StringUtils.isEmpty(shoppingListName)) {
-            return ShoppingListMapper.MAPPER.toDtos(shoppingListRepository.findAll());
+            return shoppingListMapper.toDtos(shoppingListRepository.findAll());
         }
-        return ShoppingListMapper.MAPPER.toDtos(shoppingListRepository.findByNameContainingIgnoreCase(shoppingListName));
+        return shoppingListMapper.toDtos(shoppingListRepository.findByNameContainingIgnoreCase(shoppingListName));
     }
 
     public ShoppingListDto save(ShoppingListDto shoppingList) {
-        return ShoppingListMapper.MAPPER.toDto(shoppingListRepository.save(ShoppingListMapper.MAPPER.toEntity(shoppingList)));
+        return shoppingListMapper.toDto(shoppingListRepository.save(shoppingListMapper.toEntity(shoppingList)));
     }
 
     public Optional<ShoppingList> findById(Long id) {
@@ -33,6 +35,6 @@ public class ShoppingListService {
 
     public void addItemToShoppingList(Item item, ShoppingList shoppingList) {
         shoppingList.getItems().add(item);
-        save(ShoppingListMapper.MAPPER.toDto(shoppingList));
+        save(shoppingListMapper.toDto(shoppingList));
     }
 }

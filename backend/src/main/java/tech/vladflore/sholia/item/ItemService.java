@@ -9,20 +9,22 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final ItemMapper itemMapper;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, ItemMapper itemMapper) {
         this.itemRepository = itemRepository;
+        this.itemMapper = itemMapper;
     }
 
     public ItemDto save(ItemDto item) {
-        return ItemMapper.MAPPER.toDto(itemRepository.save(ItemMapper.MAPPER.toEntity(item)));
+        return itemMapper.toDto(itemRepository.save(itemMapper.toEntity(item)));
     }
 
     public List<ItemDto> findItems(String itemName) {
         if (itemName.isBlank()) {
-            return ItemMapper.MAPPER.toDtos(itemRepository.findAll());
+            return itemMapper.toDtos(itemRepository.findAll());
         }
-        return ItemMapper.MAPPER.toDtos(itemRepository.findByNameContainingIgnoreCase(itemName));
+        return itemMapper.toDtos(itemRepository.findByNameContainingIgnoreCase(itemName));
     }
 
     public Optional<Item> findById(Long itemId) {

@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ItemMapperTest {
 
-    //TODO does is make any sense to test the convertion for Set<ShoppingList> shoppingLists ? Do I actually need that ?
+    private final ItemMapper itemMapper = new ItemMapperImpl();
 
     @Test
     @DisplayName("should map an item dto to an item entity")
     void toEntity() {
         ItemDto itemDto = createItemDto();
 
-        Item item = ItemMapper.MAPPER.toEntity(itemDto);
+        Item item = itemMapper.toEntity(itemDto);
 
         assertThat(item.getId()).isEqualTo(itemDto.getId());
         assertThat(item.getName()).isEqualTo(itemDto.getName());
@@ -34,7 +34,7 @@ class ItemMapperTest {
     @DisplayName("should map an item entity to an item dto")
     void toDto() {
         Item item = createItem();
-        ItemDto itemDto = ItemMapper.MAPPER.toDto(item);
+        ItemDto itemDto = itemMapper.toDto(item);
 
         assertThat(itemDto.getId()).isEqualTo(item.getId());
         assertThat(itemDto.getName()).isEqualTo(item.getName());
@@ -51,7 +51,7 @@ class ItemMapperTest {
     @DisplayName("should map a list of item dtos to a list of item entities")
     void toEntities() {
         List<ItemDto> itemDtos = List.of(createItemDto());
-        List<Item> items = ItemMapper.MAPPER.toEntities(itemDtos);
+        List<Item> items = itemMapper.toEntities(itemDtos);
 
         assertThat(items).isNotNull();
         assertThat(items.size()).isEqualTo(1);
@@ -62,7 +62,7 @@ class ItemMapperTest {
     @DisplayName("should map a list of item entities to a list of item dtos")
     void toDtos() {
         List<Item> items = List.of(createItem());
-        List<ItemDto> itemDtos = ItemMapper.MAPPER.toDtos(items);
+        List<ItemDto> itemDtos = itemMapper.toDtos(items);
 
         assertThat(itemDtos).isNotNull();
         assertThat(itemDtos.size()).isEqualTo(1);
@@ -74,7 +74,7 @@ class ItemMapperTest {
     @DisplayName("should map an empty list of item entities to an empty list of item dtos")
     void toEmptyDtos() {
         List<Item> items = Collections.emptyList();
-        List<ItemDto> itemDtos = ItemMapper.MAPPER.toDtos(items);
+        List<ItemDto> itemDtos = itemMapper.toDtos(items);
 
         assertThat(itemDtos).isNotNull();
         assertThat(itemDtos.size()).isEqualTo(0);

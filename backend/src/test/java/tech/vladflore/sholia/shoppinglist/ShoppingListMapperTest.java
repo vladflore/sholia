@@ -8,11 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ShoppingListMapperTest {
 
+    private final ShoppingListMapper shoppingListMapper = new ShoppingListMapperImpl();
+
     @Test
     void toEntity() {
         ShoppingListDto shoppingListDto = createShoppingListDto();
 
-        ShoppingList shoppingList = ShoppingListMapper.MAPPER.toEntity(shoppingListDto);
+        ShoppingList shoppingList = shoppingListMapper.toEntity(shoppingListDto);
 
         assertThat(shoppingList.getId()).isEqualTo(shoppingListDto.getId());
         assertThat(shoppingList.getName()).isEqualTo(shoppingListDto.getName());
@@ -21,7 +23,7 @@ class ShoppingListMapperTest {
     @Test
     void toDto() {
         ShoppingList shoppingList = createShoppingList();
-        ShoppingListDto shoppingListDto = ShoppingListMapper.MAPPER.toDto(shoppingList);
+        ShoppingListDto shoppingListDto = shoppingListMapper.toDto(shoppingList);
 
         assertThat(shoppingListDto.getId()).isEqualTo(shoppingList.getId());
         assertThat(shoppingListDto.getName()).isEqualTo(shoppingList.getName());
@@ -30,7 +32,7 @@ class ShoppingListMapperTest {
     @Test
     void toEntities() {
         List<ShoppingListDto> shoppingListDtos = List.of(createShoppingListDto());
-        List<ShoppingList> shoppingLists = ShoppingListMapper.MAPPER.toEntities(shoppingListDtos);
+        List<ShoppingList> shoppingLists = shoppingListMapper.toEntities(shoppingListDtos);
 
         assertThat(shoppingLists).isNotNull();
         assertThat(shoppingLists.size()).isEqualTo(1);
@@ -40,7 +42,7 @@ class ShoppingListMapperTest {
     @Test
     void toDtos() {
         List<ShoppingList> shoppingLists = List.of(createShoppingList());
-        List<ShoppingListDto> shoppingListDtos = ShoppingListMapper.MAPPER.toDtos(shoppingLists);
+        List<ShoppingListDto> shoppingListDtos = shoppingListMapper.toDtos(shoppingLists);
 
         assertThat(shoppingListDtos).isNotNull();
         assertThat(shoppingListDtos.size()).isEqualTo(1);
