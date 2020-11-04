@@ -1,0 +1,26 @@
+@startuml
+
+title Sholia Project\nPackages and Collaborators
+
+package tech.vladflore.sholia {
+    package item {
+        class ItemController
+        class ItemService
+        class ItemRepository
+        ItemController --> ItemService
+        ItemService --> ItemRepository
+    }
+
+    package shoppinglist {
+        class ShoppingListController
+        class ShoppingListService
+        class ShoppingListRepository
+        ShoppingListController --> ShoppingListService
+        ShoppingListService --> ShoppingListRepository
+    }
+
+    package config {
+        class InsertDummyItemsIntoDatabase
+    }
+}
+@enduml

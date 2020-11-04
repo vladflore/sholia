@@ -1,6 +1,6 @@
 @startuml
 
-title Domain Objects\nSholia Project\n
+title Sholia Project\nModel
 
 class Item {
 - id: Long
@@ -38,5 +38,11 @@ EURO
 DOLLAR
 RON
 }
+
+Item --> MeasurementEnum
+Item --> LanguageEnum
+Item --> CurrencyEnum
+
+ShoppingList o-- "0..*" Item
 
 @enduml
