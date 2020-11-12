@@ -9,10 +9,11 @@ import tech.vladflore.sholia.item.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.function.Function.identity;
 
 @Component
 public class InsertDummyItemsIntoDatabase implements CommandLineRunner {
@@ -30,7 +31,7 @@ public class InsertDummyItemsIntoDatabase implements CommandLineRunner {
                 String[] data = line.split(",");
                 Map<Integer, String> dataMap = IntStream.range(0, data.length)
                         .boxed()
-                        .collect(Collectors.toMap(Function.identity(), key -> data[key]));
+                        .collect(Collectors.toMap(identity(), key -> data[key]));
                 Item item = new Item();
                 item.setName(dataMap.get(0));
                 item.setQuantity(Double.valueOf(dataMap.get(1)));

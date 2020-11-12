@@ -7,6 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ShoppingListRepository extends JpaRepository<ShoppingList, Long> {
-
     List<ShoppingList> findByNameContainingIgnoreCase(String shoppingListName);
 }
