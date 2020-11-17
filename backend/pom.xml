@@ -24,6 +24,7 @@
         <pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
         <testcontainers.version>1.15.0</testcontainers.version>
         <postgresql.version>42.2.12</postgresql.version>
+        <selenium-chrome-driver.version>3.141.59</selenium-chrome-driver.version>
     </properties>
 
     <dependencies>
@@ -87,6 +88,17 @@
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${testcontainers.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>selenium</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium-chrome-driver.version}</version>
         </dependency>
     </dependencies>
 
