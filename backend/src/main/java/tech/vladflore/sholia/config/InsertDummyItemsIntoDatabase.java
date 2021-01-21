@@ -6,8 +6,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import tech.vladflore.sholia.item.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -26,7 +27,8 @@ public class InsertDummyItemsIntoDatabase implements CommandLineRunner {
     @Override
     public void run(String... args) {
         Resource resource = new ClassPathResource("raw-data-for-sholia.csv");
-        try (Stream<String> csvLines = Files.lines(resource.getFile().toPath())) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
+            Stream<String> csvLines = reader.lines();
             csvLines.skip(1).forEach(line -> {
                 String[] data = line.split(",");
                 Map<Integer, String> dataMap = IntStream.range(0, data.length)

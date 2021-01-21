@@ -1,0 +1,9 @@
+
+   _____ _           _ _
+  / ____| |         | (_)
+ | (___ | |__   ___ | |_  __ _
+  \___ \| '_ \ / _ \| | |/ _` |
+  ____) | | | | (_) | | | (_| |
+ |_____/|_| |_|\___/|_|_|\__,_|
+ Your new and improved shopping experience!
+ Version:${application.version} powered by Spring Boot${spring-boot.formatted-version}
