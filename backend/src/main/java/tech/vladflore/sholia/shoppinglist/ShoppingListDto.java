@@ -1,13 +1,15 @@
 package tech.vladflore.sholia.shoppinglist;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotEmpty;
+
+import lombok.Data;
 
 @Data
 public class ShoppingListDto {
-    private Long id;
 
-    @NotEmpty
-    private String name;
+	private Long id;
+
+	@NotEmpty
+	private String name;
+
 }

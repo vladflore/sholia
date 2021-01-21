@@ -4,33 +4,44 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CurrencyEnum {
-    EURO("euro"),
-    DOLLAR("dollar"),
-    RON("ron");
 
-    private final String value;
+	/**
+	 * Denotes the euro currency.
+	 */
+	EURO("euro"),
+	/**
+	 * Denotes the dollar currency.
+	 */
+	DOLLAR("dollar"),
+	/**
+	 * Denotes the lei currency.
+	 */
+	RON("ron");
 
-    CurrencyEnum(String value) {
-        this.value = value;
-    }
+	private final String value;
 
-    @JsonValue
-    public String getValue() {
-        return value;
-    }
+	CurrencyEnum(String value) {
+		this.value = value;
+	}
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+	@JsonValue
+	public String getValue() {
+		return value;
+	}
 
-    @JsonCreator
-    public static CurrencyEnum fromValue(String value) {
-        for (CurrencyEnum c : CurrencyEnum.values()) {
-            if (c.value.equals(value)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
+
+	@JsonCreator
+	public static CurrencyEnum fromValue(String value) {
+		for (CurrencyEnum c : CurrencyEnum.values()) {
+			if (c.value.equals(value)) {
+				return c;
+			}
+		}
+		throw new IllegalArgumentException("Unexpected value '" + value + "'");
+	}
+
 }

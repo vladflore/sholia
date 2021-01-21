@@ -1,17 +1,18 @@
 package tech.vladflore.sholia.shoppinglist;
 
-import org.mapstruct.Mapper;
-
 import java.util.List;
+
+import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ShoppingListMapper {
 
-    ShoppingList toEntity(ShoppingListDto shoppingListDto);
+	ShoppingList toEntity(ShoppingListDto shoppingListDto);
 
-    ShoppingListDto toDto(ShoppingList shoppingList);
+	ShoppingListDto toDto(ShoppingList shoppingList);
 
-    List<ShoppingList> toEntities(List<ShoppingListDto> shoppingListDtos);
+	List<ShoppingList> toEntities(List<ShoppingListDto> shoppingListDtos);
 
-    List<ShoppingListDto> toDtos(List<ShoppingList> shoppingLists);
+	List<ShoppingListDto> toDtos(List<ShoppingList> shoppingLists);
+
 }

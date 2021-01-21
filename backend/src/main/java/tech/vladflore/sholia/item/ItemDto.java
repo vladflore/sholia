@@ -1,40 +1,43 @@
 package tech.vladflore.sholia.item;
 
+import java.util.Set;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import tech.vladflore.sholia.shoppinglist.ShoppingListDto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Set;
-
 @Data
 public class ItemDto {
-    private Long id;
 
-    @NotEmpty
-    private String name;
+	private Long id;
 
-    @NotNull
-    private Double quantity;
+	@NotEmpty
+	private String name;
 
-    @NotNull
-    private MeasurementEnum measurement;
+	@NotNull
+	private Double quantity;
 
-    @NotNull
-    private LanguageEnum language;
+	@NotNull
+	private MeasurementEnum measurement;
 
-    @JsonProperty("shopping_lists")
-    private Set<ShoppingListDto> shoppingLists;
+	@NotNull
+	private LanguageEnum language;
 
-    @JsonProperty("price_per_quantity")
-    private Double pricePerQuantity;
+	@JsonProperty("shopping_lists")
+	private Set<ShoppingListDto> shoppingLists;
 
-    @NotEmpty
-    private String shop;
+	@JsonProperty("price_per_quantity")
+	private Double pricePerQuantity;
 
-    private String notes;
+	@NotEmpty
+	private String shop;
 
-    @NotNull
-    private CurrencyEnum currency;
+	private String notes;
+
+	@NotNull
+	private CurrencyEnum currency;
+
 }

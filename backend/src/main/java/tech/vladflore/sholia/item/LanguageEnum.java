@@ -4,33 +4,44 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum LanguageEnum {
-    EN("en"),
-    DE("de"),
-    RO("ro");
 
-    private final String value;
+	/**
+	 * Denotes the english language.
+	 */
+	EN("en"),
+	/**
+	 * Denotes the german language.
+	 */
+	DE("de"),
+	/**
+	 * Denotes the romanian language.
+	 */
+	RO("ro");
 
-    LanguageEnum(String value) {
-        this.value = value;
-    }
+	private final String value;
 
-    @JsonValue
-    public String getValue() {
-        return value;
-    }
+	LanguageEnum(String value) {
+		this.value = value;
+	}
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+	@JsonValue
+	public String getValue() {
+		return value;
+	}
 
-    @JsonCreator
-    public static LanguageEnum fromValue(String value) {
-        for (LanguageEnum b : LanguageEnum.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
+
+	@JsonCreator
+	public static LanguageEnum fromValue(String value) {
+		for (LanguageEnum b : LanguageEnum.values()) {
+			if (b.value.equals(value)) {
+				return b;
+			}
+		}
+		throw new IllegalArgumentException("Unexpected value '" + value + "'");
+	}
+
 }

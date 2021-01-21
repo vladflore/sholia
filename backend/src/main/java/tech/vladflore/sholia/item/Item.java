@@ -1,38 +1,47 @@
 package tech.vladflore.sholia.item;
 
-import lombok.Data;
-import tech.vladflore.sholia.shoppinglist.ShoppingList;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import lombok.Data;
+import tech.vladflore.sholia.shoppinglist.ShoppingList;
 
 @Entity
 @Data
 public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    private Double quantity;
+	private String name;
 
-    @Enumerated(EnumType.STRING)
-    private MeasurementEnum measurement;
+	private Double quantity;
 
-    @Enumerated(EnumType.STRING)
-    private LanguageEnum language;
+	@Enumerated(EnumType.STRING)
+	private MeasurementEnum measurement;
 
-    @ManyToMany(mappedBy = "items")
-    private final Set<ShoppingList> shoppingLists = new HashSet<>();
+	@Enumerated(EnumType.STRING)
+	private LanguageEnum language;
 
-    private Double pricePerQuantity;
+	@ManyToMany(mappedBy = "items")
+	private final Set<ShoppingList> shoppingLists = new HashSet<>();
 
-    private String shop;
+	private Double pricePerQuantity;
 
-    private String notes;
+	private String shop;
 
-    @Enumerated(EnumType.STRING)
-    private CurrencyEnum currency;
+	private String notes;
+
+	@Enumerated(EnumType.STRING)
+	private CurrencyEnum currency;
+
 }

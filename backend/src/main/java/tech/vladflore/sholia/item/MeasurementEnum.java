@@ -4,37 +4,51 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum MeasurementEnum {
-    G("g"),
 
-    KG("kg"),
+	/**
+	 * Measurement for gram.
+	 */
+	G("g"),
 
-    L("l"),
+	/**
+	 * Measurement for kilogram.
+	 */
+	KG("kg"),
 
-    PC("pc");
+	/**
+	 * Measurement for liter.
+	 */
+	L("l"),
 
-    private final String value;
+	/**
+	 * Measurement for a piece.
+	 */
+	PC("pc");
 
-    MeasurementEnum(String value) {
-        this.value = value;
-    }
+	private final String value;
 
-    @JsonValue
-    public String getValue() {
-        return value;
-    }
+	MeasurementEnum(String value) {
+		this.value = value;
+	}
 
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
+	@JsonValue
+	public String getValue() {
+		return value;
+	}
 
-    @JsonCreator
-    public static MeasurementEnum fromValue(String value) {
-        for (MeasurementEnum b : MeasurementEnum.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
+
+	@JsonCreator
+	public static MeasurementEnum fromValue(String value) {
+		for (MeasurementEnum b : MeasurementEnum.values()) {
+			if (b.value.equals(value)) {
+				return b;
+			}
+		}
+		throw new IllegalArgumentException("Unexpected value '" + value + "'");
+	}
+
 }
