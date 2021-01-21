@@ -29,11 +29,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -42,6 +42,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -54,7 +58,6 @@
             <version>${postgresql.version}</version>
             <scope>runtime</scope>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -137,6 +140,27 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <excludeProperties>
+                        <excludeProperty>git.branch</excludeProperty>
+                        <excludeProperty>git.build.host</excludeProperty>
+                        <excludeProperty>git.build.user.email</excludeProperty>
+                        <excludeProperty>git.closest.*</excludeProperty>
+                        <excludeProperty>git.commit.message.*</excludeProperty>
+                        <excludeProperty>git.commit.user.email</excludeProperty>
+                        <excludeProperty>git.dirty</excludeProperty>
+                        <excludeProperty>git.local.*</excludeProperty>
+                        <excludeProperty>git.remote</excludeProperty>
+                        <excludeProperty>git.tags</excludeProperty>
+                        <excludeProperty>git.total.commit.count</excludeProperty>
+                        <excludeProperty>git.remote.*</excludeProperty>
+                    </excludeProperties>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
@@ -160,6 +184,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
