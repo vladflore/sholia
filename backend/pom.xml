@@ -28,7 +28,7 @@
         <spring-javaformat-maven-plugin.version>0.0.17</spring-javaformat-maven-plugin.version>
         <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
         <java.version>11</java.version>
-        <checkstyle.version>8.29</checkstyle.version>
+        <checkstyle.version>8.22</checkstyle.version>
     </properties>
 
     <dependencies>
@@ -149,12 +149,12 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
                 <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                    </dependency>
-                    <dependency>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${checkstyle.version}</version>
+					</dependency>
+					<dependency>
                         <groupId>io.spring.javaformat</groupId>
                         <artifactId>spring-javaformat-checkstyle</artifactId>
                         <version>${spring-javaformat-maven-plugin.version}</version>
