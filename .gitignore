@@ -10,3 +10,11 @@ target/
 *.iws
 *.iml
 *.ipr
+
+.project
+.settings/
+backend/.classpath
+backend/.factorypath
+backend/.project
+backend/.settings/
+
