@@ -118,6 +118,9 @@
                                 <param>tech.vladflore.sholia.item.*</param>
                                 <param>tech.vladflore.sholia.shoppinglist.*</param>
                             </targetTests>
+							<excludedTestClasses>
+								<param>tech.vladflore.sholia.item.ItemRepositoryTest</param>
+							</excludedTestClasses>
                             <mutationThreshold>33</mutationThreshold>
                             <skip>false</skip>
                         </configuration>
