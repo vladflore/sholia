@@ -29,7 +29,9 @@
         <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
         <java.version>11</java.version>
         <checkstyle.version>8.22</checkstyle.version>
-    </properties>
+		<springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+		<springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+	</properties>
 
     <dependencies>
         <dependency>
@@ -90,7 +92,18 @@
             <artifactId>junit-jupiter</artifactId>
             <version>${testcontainers.version}</version>
         </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox-boot-starter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger-ui.version}</version>
+		</dependency>
+
+	</dependencies>
 
     <profiles>
         <profile>

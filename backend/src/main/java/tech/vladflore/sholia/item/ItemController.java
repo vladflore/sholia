@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,12 +26,19 @@ public class ItemController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<ItemDto>> getItems(@RequestParam(required = false, name = "name") String itemName) {
+	@ApiOperation(value = "Get items",
+			notes = "If name is not specified, get all items, otherwise only those which contain name in their names",
+			responseContainer = "List", response = ItemDto.class)
+	public ResponseEntity<List<ItemDto>> getItems(@ApiParam(
+			value = "The string by which items are filtered and returned, if not given, return all items") @RequestParam(
+					required = false, name = "name") String itemName) {
 		return ResponseEntity.ok(itemService.findItems(itemName));
 	}
 
 	@PostMapping
-	public ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto item) {
+	@ApiOperation(value = "Create a new item", notes = "Create a new item", response = ItemDto.class)
+	public ResponseEntity<ItemDto> createItem(
+			@ApiParam(value = "The payload representing an item to be created") @Valid @RequestBody ItemDto item) {
 		return ResponseEntity.ok(itemService.save(item));
 	}
 

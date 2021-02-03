@@ -22,7 +22,7 @@ public class ItemService {
 	}
 
 	public List<ItemDto> findItems(String itemName) {
-		if (itemName.isBlank()) {
+		if (itemName == null || itemName.isBlank()) {
 			return itemMapper.toDtos(itemRepository.findAll());
 		}
 		return itemMapper.toDtos(itemRepository.findByNameContainingIgnoreCase(itemName));
