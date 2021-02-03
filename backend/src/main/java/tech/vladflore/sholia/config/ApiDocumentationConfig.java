@@ -9,11 +9,30 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApiDocumentationConfig {
+
+	@Value("${app.title}")
+	private String appTitle;
+
+	@Value("${app.version}")
+	private String appVersion;
+
+	@Value("${app.description}")
+	private String appDescription;
+
+	@Value("${app.license}")
+	private String appLicense;
+
+	@Value("${app.licenseUrl}")
+	private String appLicenseUrl;
+
+	@Value("${app.termsOfServiceUrl}")
+	private String appTermsOfserviceUrl;
 
 	@Bean
 	public Docket api() {
@@ -23,8 +42,9 @@ public class ApiDocumentationConfig {
 	}
 
 	private ApiInfo apiDetails() {
-		return new ApiInfo("Sholia API", "Sholia API", "0.0.1-SNAPSHOT", "Terms of service not defined yet",
-				new Contact("Vlad Flore", "http://vladflore.tech", "flore.vlad@gmail.com"), "License not defined yet",
-				"License URL not defined yet", Collections.emptyList());
+		return new ApiInfo(appTitle, appDescription, appVersion, appTermsOfserviceUrl,
+				new Contact("Vlad Flore", "http://vladflore.tech", "flore.vlad@gmail.com"), appLicense, appLicenseUrl,
+				Collections.emptyList());
 	}
+
 }

@@ -29,8 +29,8 @@ public class ItemController {
 	@ApiOperation(value = "Get items",
 			notes = "If name is not specified, get all items, otherwise only those which contain name in their names",
 			responseContainer = "List", response = ItemDto.class)
-	public ResponseEntity<List<ItemDto>> getItems(@ApiParam(
-			value = "The string by which items are filtered and returned, if not given, return all items") @RequestParam(
+	public ResponseEntity<List<ItemDto>> getItems(
+			@ApiParam("The string by which items are filtered and returned, if not given, return all items") @RequestParam(
 					required = false, name = "name") String itemName) {
 		return ResponseEntity.ok(itemService.findItems(itemName));
 	}
@@ -38,7 +38,7 @@ public class ItemController {
 	@PostMapping
 	@ApiOperation(value = "Create a new item", notes = "Create a new item", response = ItemDto.class)
 	public ResponseEntity<ItemDto> createItem(
-			@ApiParam(value = "The payload representing an item to be created") @Valid @RequestBody ItemDto item) {
+			@ApiParam("The payload representing an item to be created") @Valid @RequestBody ItemDto item) {
 		return ResponseEntity.ok(itemService.save(item));
 	}
 
