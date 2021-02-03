@@ -28,7 +28,7 @@
         <spring-javaformat-maven-plugin.version>0.0.17</spring-javaformat-maven-plugin.version>
         <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
         <java.version>11</java.version>
-        <checkstyle.version>8.22</checkstyle.version>
+        <checkstyle.version>8.29</checkstyle.version>
 		<springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
 		<springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
 	</properties>
