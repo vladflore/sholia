@@ -23,7 +23,7 @@
         <lombok.version>1.18.12</lombok.version>
         <pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
         <testcontainers.version>1.15.0</testcontainers.version>
-        <postgresql.version>42.2.12</postgresql.version>
+        <postgresql.version>42.4.1</postgresql.version>
         <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
         <spring-javaformat-maven-plugin.version>0.0.17</spring-javaformat-maven-plugin.version>
         <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
